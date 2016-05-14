@@ -1,0 +1,26 @@
+if special form
+	Tests a predicate and executes one of two expressions
+	Predicate evaluates as true if anything but false or nil else evaluates as false.
+	If predicate evaluates as true, value of first expression is returned, else value of
+	second expression is returned.
+	An if with only one expression defined will default to nil if predicate is evaluated
+	as false.
+	
+	syntax:
+		(if predicate expression1 expression2)
+		
+	ex:
+		(if true
+			1
+			0
+		) ; This function call returns 1
+		
+		(if false
+			"yes"
+			"no"
+		) ; This function call returns "no"
+		
+		(if false "Hello!") ; Returns nil
+
+cond special form
+	???

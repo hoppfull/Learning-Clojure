@@ -1,0 +1,57 @@
+recur special form
+	Since clojure doesn't support tail call elimination, recur is a mechanism to allow recursion without
+	running into stack overflow.
+	Recur may only be the last called expression in a function.
+	Recur will only call the function in which it is most immediately contained. It may not call an
+	enclosing function. So be careful in function nesting!
+	
+	syntax:
+		(fn arguments body (recur arguments))
+		
+	ex:
+		(defn myFunction [x]
+			(println x)
+			(myFunction x)
+		) ; runs until stack overflow
+		
+		(defn myFunction [x]
+			(println x)
+			(recur x) ; calls myFunction with argument x
+		) ; will run indefinately without triggering a stack overflow
+		
+		(defn myFunction [x]
+			(println x)
+			(recur (inc x))
+		) ; runs indefinately, prints value of x incremented each recursion call'
+		
+		(defn myFunction [i n]
+			(println i)
+			(if (< i n) ; (if) would seem to be last call but logically, recur is still called last!
+				(recur (inc i) n)
+			)
+		) ; prints values from i to n
+
+loop special form
+	Like let but also establishes a recursion point for recur.
+	
+	syntax:
+		(loop [bindings] body)
+		
+	ex:
+		(loop [i 1 n 10]
+			(println i)
+			(if (< i n)
+				(recur (inc i) n)
+			)
+		) ; Prints 1 to 10
+		
+		(loop [i 0 n 10 xs []]
+			(if (< i n) ; if i < n, recur, else return xs
+				(recur
+					(inc i)
+					n
+					(conj xs i) ; appends value of i to collection of xs
+				)
+				xs
+			)
+		) ; Returns a collection (1..9)

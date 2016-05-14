@@ -1,0 +1,14 @@
+try, catch, finally, throw special forms
+	try catches exceptions that propagate from its body and an optional finally-clause
+	execute after try body is done.
+	
+	syntax:
+		(try
+			(print "Trying!")
+			(catch BadThing e
+				(myException e)
+			) ; Any number of catch functions can be passed to try I think
+			(finally
+				(print "...finally!")
+			)
+		)

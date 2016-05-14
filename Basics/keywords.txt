@@ -1,0 +1,31 @@
+builtin functions:
+	def			; map value to symbol
+	fn			; return new function
+	defn		; define function
+	var			; returns object to which a symbol resolves, (var x) returns value of x
+	print		; print
+	println		; print and new line
+	+			; addition
+	-			; subtraction
+	*			; multiplication
+	/			; division
+	=			; Test equality
+	not=		; Test not equal
+	<			; Test less than
+	>			; Test greater than
+	<=			; Test less than or equal
+	>=			; Test greater than or equal
+	and			; logical and, evaluates from left to right, (and p1 & p)
+	or			; logical or, evaluates from left to right, (or p1 & p)
+	inc			; increment
+	dec			; decrement
+	if			; test
+	cond		; test, like a switch statement
+	do			; execute body of expressions in order
+	let			; execute body of expressions in order with local symbols
+	recur		; last call of a function, will call that function with passed arguments
+	conj		; appends a value to a collection
+	throw		; throw exception
+	
+	
+	try, catch, finally ; try-catch-finally statements

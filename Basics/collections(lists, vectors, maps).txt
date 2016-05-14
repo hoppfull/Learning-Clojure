@@ -1,0 +1,22 @@
+Clojure list: eg. (1 2 3)
+	Lists are ordered lists, implemented as a series of
+	nodes so that accessing any random element will
+	require Clojure to cycle through all elements up to
+	that point.
+	
+	The evaluator will first treat a list as a function
+	call. eg. (foo 3.14 42 "hello") will first be treated
+	as a function foo with three arguments, 3.14, 42 and
+	"hello". 
+	
+	??? Are all function calls really lists?
+
+Clojure Vector: eg. [1 2 3]
+	Vectors are also ordered lists but implemented in a
+	tree like structure to allow for relatively efficient
+	access of elements.
+
+Clojure map: eg. {"key1" "value1" 3.14 42 foo bar}
+	A Clojure map is like a dictionary in python.
+	Entries come in pairs with odd numbered being keys
+	and even numbered being values.

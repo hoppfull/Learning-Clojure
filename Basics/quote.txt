@@ -1,0 +1,13 @@
+quote special form
+	Returns an element unevaluated. Not sure what this is useful for but apparently it's useful
+	when dealing with macros...
+	Forced laziness?
+	Forcing clojure to interpret what would otherwise be a function call as a list instead?
+	
+	syntax:
+		(quote element)
+		'(element) ; same as above expression
+		
+	ex:
+		(quote (+ 1 2)) ; returns a list of symbol + and values 1 2
+		'(+ 1 2) ; returns a list of symbol + and values 1 2

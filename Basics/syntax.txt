@@ -1,0 +1,26 @@
+This contains info for Clojure regarding the JVM!
+Datatypes:
+	- "this is a string"			; Java string
+	- 'a'							; Java character
+	- 42							; Java Long
+	- 3.14							; Java Double
+	- nil							; Java null
+	
+	- foo							; Clojure symbol
+	- :foo							; Clojure keyword
+	- (1 2 3)						; Clojure list
+	- [1 2 3]						; Clojure vector
+	- {"foo" 1 2 3}					; Clojure map
+	
+	- true, false					; boolean true or false
+	
+Syntax:
+	- ;								; one line comment
+	- var??? Something about mutable reference
+	- symbols						; resolve to the values held in vars
+		ex: foo						; resolves to the value of the var of the symbol foo
+	- namespace??? Something about mapping symbols to vars
+		ex: foo/bar					; bar is a symbol in the foo namespace
+	- function call
+		ex: (foo p1 p2 p3)			; function foo call with three arguments, p1, p2, p3
+	- macro???

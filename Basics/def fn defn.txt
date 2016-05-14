@@ -1,0 +1,54 @@
+def special form
+	Assings a value to a var
+
+	syntax:
+		(def symbol value)
+	ex:
+		(def x 3)				; assigns value of 3 to var of symbol x
+		(def y (+ 1 2))			; assigns value of function call (+ 1 2) to var of symbol y
+
+fn special form
+	Creates and returns a function object.
+	The returned function returns the last expression in its body when called.
+	Any function calls inside returned function body are references so if they
+	change, returned function will also change.
+	The & sign in parameter vector will make following parameters optional.
+	
+	syntax:
+		(fn [parameters] body)
+		(fn [parameters & optional_parameters_passed_as_an_ordered_list] body)
+	ex:
+		(fn [x y z]
+			(+ x y)
+			(- y z)
+		) ; creates and returns a function that returns value of y - z
+		
+		(fn [x y & a]
+			(do-whatever a)
+			(+ x y)
+		) ; returns a function that takes two or more arguments, a being an ordered collection (vector or list or either?)
+		
+		(fn [x y]
+			(fn [x]
+				(+ x y) ; x resolves to the inner x, y resolves to the outer x
+			)
+		)
+
+		
+defn special form
+	A combination of def and fn to make code less verbose.
+	
+	syntax:
+		(defn symbol [parameters] body)
+	ex:
+		(def myFunction (fn [a b c]
+			(* (+ a b) c)
+		)) ; is the same as:
+		
+		(defn myFunction [a b c]
+			(* (+ a b) c)
+		) ; assigns to symbol myFunction a function that takes three parameters and returns value of (* (+ a b) c)
+		
+shorthand notation:
+	ex:
+		(#(+ %1 %2 %3) 4 5 6) ; is like fn that takes three arguments

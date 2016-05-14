@@ -1,0 +1,27 @@
+do special form
+	Execute a body of expressions in order (like in imperative programming).
+	Returns value of last expression in body.
+	
+	syntax:
+		(do body)
+	
+	ex:
+		(do
+			(print "Hello ")
+			(println "world!")
+			(+ 1 2)
+		) ; Prints "Hello world!\n" and then returns evaluated value of (+ 1 2)
+		
+let special form
+	Locally bind values of expressions to symbols for the duration of its body.
+	Like the do special form but allow us to create local symbols with assigned values.
+	
+	syntax:
+		(let [bindings] body) ; bindings are assigned in pairs
+	
+	ex:
+		(let [x 2 y 3] ; 2 is assigned to x, 3 is assigned to y
+			(print x)
+			(print y)
+			(+ x y)
+		) ; Prints "23" and returns evaluated value of (+ 2 3)
