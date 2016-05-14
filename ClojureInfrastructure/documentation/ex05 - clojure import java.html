@@ -1,0 +1,71 @@
+<head>
+	<title>ex05 - clojure import java</title><meta charset="UTF-8"/>
+	<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+hoppfull@gmail.com, 2015-04-22, Clojure basics
+
+<p class="description"><h2>
+How to import compiled Java (.class files) into Clojure.
+</h2></p>
+
+<p class="description">
+Files: <i>"run.bat", "jars/clojure-1.6.0.jar", "src/External.java", "main.clj"</i>
+</p><br/>
+
+<p class="description">
+<i>jars/clojure-1.6.0.jar</i> contains the clojure language.
+</p><br/>
+
+
+<p class="description">
+<i>run.bat</i> sets classpath to <i>jars/*</i> (any files it finds in jar directory) and <i>src/</i> directory
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL java -cp jars/*;src/ clojure.main -i main.clj
+</div><br/>
+
+<p class="description">
+<i>src/External.java</i>
+</p>
+<div class="code"
+>public class External {
+	public static int myFunction(int x) {
+		return x*3;
+	}  // This function returns tripled any integer value passed to it
+}
+</div><br/>
+
+<p class="description">
+<i>main.clj</i>
+</p>
+<div class="code"
+>(println (External/myFunction 10))
+</div><br/>
+
+<p class="description">
+Console: I manually compile <i>External.java</i> (It's on purpose that I don't automate this process)
+</p>
+<div class="code console"
+>project root>> cd src
+
+project root/src>> javac External.java
+
+project root/src>> cd..
+
+project root>> _
+</div><br/>
+
+<p class="description">
+Console: Then when everything is compiled and ready to go, I can run the project.
+</p>
+<div class="code console"
+>project root>> run
+30
+
+project root>> _
+</div><br/>
+
+</body>

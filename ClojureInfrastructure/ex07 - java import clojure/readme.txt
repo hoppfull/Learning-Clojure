@@ -1,0 +1,1 @@
+Requires jars/clojure-1.6.0.jar in this directory to work!

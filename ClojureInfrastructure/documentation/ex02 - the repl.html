@@ -1,0 +1,53 @@
+<head>
+	<title>ex02 - the repl</title><meta charset="UTF-8"/>
+	<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+
+hoppfull@gmail.com, 2015-04-22, Clojure basics
+
+<p class="description"><h2>
+How to run the Clojure REPL.
+</h2></p>
+
+<p class="description">
+Files: <i>"repl.bat", "clojure-1.6.0.jar"</i>
+</p><br/>
+
+<p class="description">
+<i>clojure-1.6.0.jar</i> contains the clojure language.
+</p><br/>
+
+
+<p class="description">
+<i>repl.bat</i> starts the clojure REPL
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL java -cp clojure-1.6.0.jar clojure.main -r
+</div><br/>
+
+
+
+
+<p class="description">
+Console: To start the REPL
+</p>
+<div class="code console"
+>project root>> repl
+Clojure 1.6.0
+user=> _
+</div><br/>
+
+<p class="description">
+Console: To close the REPL
+</p>
+<div class="code console"
+>user=> (System/exit 0)
+
+project root>> _
+</div><br/>
+
+
+</body>

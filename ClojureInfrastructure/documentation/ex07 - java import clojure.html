@@ -1,0 +1,138 @@
+<head>
+	<title>ex07 - java import clojure</title><meta charset="UTF-8"/>
+	<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+hoppfull@gmail.com, 2015-04-22, Clojure basics
+
+<p class="description"><h2>
+How to import compiled Clojure (.class files) from Java.
+</h2></p>
+
+<p class="description">
+Files: <i>"run.bat", "compiler.bat",
+"jars/clojure-1.6.0.jar", "compile.clj",
+"src/Main.java", "clj/ExternalOne.clj",
+"clj/ExternalTwo.clj"</i>
+</p><br/>
+
+<p class="description">
+<i>jars/clojure-1.6.0.jar</i> contains
+the clojure language.
+</p><br/>
+
+
+<p class="description">
+<i>compile.clj</i> compiles <i>.clj</i> files
+and puts the resulting <i>.class</i> files in a folder
+called <i>bin</i>. (I think that if bin doesn't exist,
+we won't get anything compiled)
+</p>
+<div class="code"
+>(set! *compile-path* "./bin")
+(compile 'clj.ExternalOne)
+(compile 'clj.ExternalTwo)
+</div><br/>
+
+
+<p class="description">
+<i>clj/ExternalOne.clj</i> I have only a vague
+understanding of how this works at this time.
+This class has to be instantiated in Java to work.
+</p>
+<div class="code"
+>(ns clj.ExternalOne
+  (:gen-class
+   :methods [[f [int] int]]))
+
+(defn -f [this x]  ; Why "this"...?
+  (+ x 5))
+</div><br/>
+
+
+<p class="description">
+<i>clj/ExternalTwo.clj</i> The functions in here are
+static. The little prefix dash on the f-function
+indicates that it may be called from Java (I think).
+</p>
+<div class="code"
+>(ns clj.ExternalTwo
+  (:gen-class
+   :methods [#^{:static true} [f [int] int]]))
+
+(defn -f [x]
+  (* x 5))
+</div><br/>
+
+
+<p class="description">
+<i>src/Main.java</i>
+</p>
+<div class="code"
+>public class Main {
+	public static void main(String args[]) {
+		
+		// ExternalOne has to be instantiated:
+		clj.ExternalOne ex1 = new clj.ExternalOne();
+		System.out.println(ex1.f(5));
+		
+		// ExternalTwo is static:
+		System.out.println(clj.ExternalTwo.f(5));
+	}
+}
+</div><br/>
+
+
+
+
+
+<p class="description">
+<i>compile.bat</i> checks to see if there
+is a bin folder, if not, creates one. Then
+goes ahead and runs the clojure compiler
+script <i>compile.clj</i>. This has to run
+first or else we get issues when compiling
+our <i>.java</i> files. When that is done
+the batch file goes on to call javac to
+compile the remaining <i>.java</i> files.
+Since the classpath includes <i>bin/</i>,
+any dependencies our java code has with
+clojure, javac will look in <i>/bin</i> to
+check that everything they need exists.
+</p>
+<div class="code"
+>@ECHO OFF
+
+IF NOT EXIST bin mkdir bin
+
+CALL java -cp jars/*;. clojure.main compile.clj
+
+CALL javac -cp jars/*;src/;bin/ src/Main.java -d bin/
+</div><br/>
+
+<p class="description">
+<i>run.bat</i> sets classpath to <i>jars/*</i>,
+<i>bin/</i> directory and executes
+<i>bin/Main.class</i>
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL java -cp jars/*;bin/ Main
+</div><br/>
+
+<p class="description">
+Console:
+</p>
+<div class="code console"
+>project root>> compile
+
+project root>> run
+10
+25
+
+project root>> _
+</div><br/>
+
+
+</body>

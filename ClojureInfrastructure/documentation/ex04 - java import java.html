@@ -1,0 +1,82 @@
+<head>
+	<title>ex04 - java import java</title><meta charset="UTF-8"/>
+	<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+
+hoppfull@gmail.com, 2015-04-22, Clojure basics
+
+<p class="description"><h2>
+How to import Java files from another Java file.
+</h2></p>
+
+<p class="description">
+Files: <i>"compile.bat", "run.bat", "Main.java", "External.java"</i>
+</p><br/>
+
+
+<p class="description">
+<i>compile.bat</i> starts the java compiler. (You need the JDK with appropriate
+environment variables setup for this to work!) This will automatically compile
+<i>Main.java</i> and any other <i>.java</i> files that <i>Main.java</i> depends on into <i>.class</i> files.
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL javac -cp . Main.java
+</div><br/>
+
+<p class="description">
+<i>run.bat</i> calls the java runtime (You need a Java Runtime Environment for this to
+work!) and executes Main.class.
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL java Main
+</div><br/>
+
+<p class="description">
+<i>External.java</i> is our example of a module.
+</p>
+<div class="code"
+>public class External {
+	public static void printMessage(String s) {
+		System.out.println(s);
+		System.out.println(s);
+		System.out.println(s);
+		System.out.println(s);
+	}
+}
+</div><br/>
+
+<p class="description">
+<i>Main.java</i> is our application starting point. This calls our <i>External.java</i> module.
+</p>
+
+<div class="code"
+>public class Main {
+	public static void main(String args[]) {
+		External.printMessage("Hello!");
+	}
+}
+</div><br/>
+
+
+<p class="description">
+Console:
+</p>
+<div class="code console"
+>project root>> compile
+
+project root>> run
+Hello!
+Hello!
+Hello!
+Hello!
+
+project root>> _
+</div><br/>
+
+
+</body>

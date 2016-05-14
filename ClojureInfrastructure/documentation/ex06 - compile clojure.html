@@ -1,0 +1,78 @@
+<head>
+	<title>ex06 - compile clojure</title><meta charset="UTF-8"/>
+	<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+hoppfull@gmail.com, 2015-04-22, Clojure basics
+
+<p class="description"><h2>
+How to compile Clojure files.
+</h2></p>
+
+<p class="description">
+Files: <i>"run.bat", "repl.bat" "clojure-1.6.0.jar", "main.clj"</i>
+</p><br/>
+
+<p class="description">
+<i>clojure-1.6.0.jar</i> contains the clojure language.
+</p><br/>
+
+
+<p class="description">
+<i>run.bat</i> sets classpath to <i>clojure-1.6.0.jar</i>,
+current directory, and executes <i>Main.class</i>.
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL java -cp clojure-1.6.0.jar;. Main
+</div><br/>
+
+
+<p class="description">
+<i>repl.bat</i> starts the REPL
+</p>
+<div class="code"
+>@ECHO OFF
+
+CALL java -cp clojure-1.6.0.jar;. clojure.main -r
+</div><br/>
+
+
+<p class="description">
+<i>main.clj</i> is the starting point of a java application.
+</p>
+<div class="code"
+>(ns Main
+  (:gen-class))
+
+(defn -main [& args]  ; Not sure about the dash "-" prefix...
+  (println "lulzc!"))
+</div><br/>
+
+<p class="description">
+Console: Now we call the REPL to compile main.clj
+</p>
+<div class="code console"
+>project root>> run
+Error: Could not find or load main class Main
+
+project root>> repl
+Clojure 1.6.0
+user => (set! *compile-path* "./")
+"./"
+user => (compile 'Main)
+Main
+user => (System/exit 0)
+project root>> run
+lulzc!
+
+project root>> _
+</div><br/>
+
+<br/>
+<p class="description">
+Look at next example to see a way to streamline the compilation process!
+</p>
+
+</body>
